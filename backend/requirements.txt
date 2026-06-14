@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+ortools
+scipy
+numpy
+websockets
+pydantic

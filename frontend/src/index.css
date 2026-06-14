@@ -1,0 +1,161 @@
+:root {
+  --bg-dark: #0a0a0c;
+  --bg-card: #15151a;
+  --text-main: #f0f0f5;
+  --text-muted: #8e8e9e;
+  --accent-purple: #8b5cf6;
+  --accent-purple-glow: rgba(139, 92, 246, 0.4);
+  --success-green: #10b981;
+  --danger-red: #ef4444;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  width: 320px;
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for Webkit (Zepto style) */
+.custom-scrollbar::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 4px;
+}
+
+.glass-panel {
+  background: rgba(21, 21, 26, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h1 span {
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px var(--accent-purple-glow);
+}
+
+.map-container {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-dark);
+}
+
+/* Dark mode map tiles filter trick */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.store-marker-healthy {
+  background-color: var(--success-green);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--success-green);
+  border: 2px solid white;
+}
+
+.store-marker-sink {
+  background-color: var(--danger-red);
+  border-radius: 50%;
+  border: 2px solid white;
+  animation: pulse 2s infinite;
+  overflow: visible !important;
+}
+
+.store-marker-source {
+  background-color: var(--accent-purple);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--accent-purple);
+  border: 2px solid white;
+}
+
+.driver-marker {
+  background-color: white;
+  border-radius: 50%;
+  border: 3px solid var(--accent-purple);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
+  50% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.inspector-panel {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 380px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  float: right;
+  padding: 0;
+}
+.close-btn:hover {
+  color: var(--text-main);
+}
