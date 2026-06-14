@@ -1,4 +1,5 @@
 from fastapi import FastAPI, WebSocket
+from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import json
 import random
@@ -8,6 +9,14 @@ from router import VRPRouter
 from agentic_layer import AgentSupervisor
 
 app = FastAPI(title="Dark Store Optimizer API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 connected_clients = set()
 
 # Global state trackers for real-time interaction
